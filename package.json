@@ -1,0 +1,20 @@
+{
+  "name": "blabber",
+  "version": "1.0.0",
+  "description": "Blabber is a chat messaging app designed to provide message communication",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asshleygozar/blabber.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asshleygozar/blabber/issues"
+  },
+  "homepage": "https://github.com/asshleygozar/blabber#readme"
+}
