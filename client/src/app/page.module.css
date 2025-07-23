@@ -1,3 +1,331 @@
-.home {
-  background-color: rebeccapurple;
+.wrapper {
+	background-color: var(--background-color);
+	display: flex;
+	flex-direction: column;
+	max-width: 120rem;
+	margin: 0 auto;
+}
+
+.navigation {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: var(--vertical-padding) var(--horizontal-padding);
+}
+
+.navigation > .brandLogo {
+	font-family: var(--font-comforta);
+	color: var(--brand-color);
+	font-size: clamp(1rem, 5.9vw, 2rem);
+}
+
+.navigation > .buttonContainer {
+	display: flex;
+	gap: 1rem;
+}
+
+.buttonContainer > .button {
+	padding: var(--vertical-padding) var(--horizontal-padding);
+	font-family: var(--font-urbanist);
+	border-radius: var(--corner-radius);
+	font-weight: 700;
+	font-size: clamp(0.8rem, 2vmin, 1.1rem);
+	cursor: pointer;
+	border: none;
+}
+
+.buttonContainer > .logIn {
+	background-color: var(--brand-color);
+	color: var(--white-font);
+	transition: background-color 0.2s ease-in-out;
+}
+
+.buttonContainer > .logIn:hover {
+	background-color: #8a0334;
+}
+
+.buttonContainer > .signUp {
+	background-color: transparent;
+	transition: background-color 0.2s ease-in-out;
+}
+
+.buttonContainer > .signUp:hover {
+	color: var(--white-font);
+	background-color: #8a0334;
+}
+
+.content {
+	padding: var(--vertical-padding) var(--horizontal-padding);
+	display: flex;
+	flex-direction: column;
+	gap: 5rem;
+}
+
+.section {
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+}
+
+.content > .homePage {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	justify-items: center;
+	align-content: center;
+	height: 100vh;
+}
+
+.homePage > h1 {
+	font-family: var(--font-urbanist);
+	font-size: clamp(2.6rem, 5.9vw, 4.5rem);
+	text-align: left;
+}
+
+.homePage > h1 > span {
+	color: var(--brand-color);
+}
+
+.messageImage {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.messageImage > .homeImage {
+	object-fit: contain;
+}
+
+.messageImage > .chatUi {
+	position: absolute;
+	top: -120px;
+	right: -10px;
+	z-index: 1;
+}
+
+.messageImage > .profileUi {
+	position: absolute;
+	top: -200px;
+	left: 20px;
+}
+
+.about {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 2rem;
+}
+
+.sectionHeader {
+	font-family: var(--font-urbanist);
+	font-size: var(--section-header-size);
+	font-weight: 700;
+	text-align: center;
+}
+
+.about > p {
+	font-family: var(--font-urbanist);
+	font-size: var(--regular-font-size);
+	line-height: 1.5;
+	text-align: center;
+}
+
+.features {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2rem;
+}
+
+.features > .carousel {
+	justify-content: center;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.carousel > .imageFeature {
+	width: 100%;
+	object-position: center;
+	object-fit: contain;
+	height: clamp(5rem, 35vw, 36.25rem);
+}
+
+.carousel > .carouselButton {
+	display: grid;
+	place-content: center;
+	font-size: clamp(0.8rem, 2vw, 1.5rem);
+	background-color: var(--brand-color);
+	color: var(--white-font);
+	padding: var(--vertical-padding);
+	border: none;
+	border-radius: 12px;
+	cursor: pointer;
+	transition: background-color 0.3s ease-out;
+}
+
+.carousel > .carouselButton:hover {
+	background-color: #8a0334;
+}
+
+.footer {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	background-color: var(--brand-color);
+	padding: var(--vertical-padding) var(--horizontal-padding);
+}
+
+.footer > .footerNavigation {
+	display: flex;
+	gap: 2rem;
+	font-family: var(--font-urbanist);
+	color: var(--white-font);
+}
+
+.footerNavigation > h1 {
+	font-size: clamp(1rem, 5vw, 1.2rem);
+}
+.footerNavigation > ul {
+	font-size: 1.2rem;
+	list-style: none;
+	color: var(--white-font);
+}
+
+.footerNavigation > ul > li > a,
+.footerInfo p {
+	font-size: clamp(0.7rem, 2vw, 0.9rem);
+}
+
+.footerInfo {
+	color: var(--white-font);
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	align-items: center;
+	align-content: end;
+	justify-items: end;
+	gap: 0.6rem;
+}
+
+/* Extra Smaller devices (Phones 600px down) */
+@media only screen and (max-width: 37.5rem) {
+	.content > .homePage {
+		grid-template-columns: 1fr;
+	}
+
+	.homePage > h1 {
+		text-align: center;
+	}
+
+	.sectionHeader {
+		font-size: clamp(1.5rem, 5.9vw, 1rem);
+	}
+
+	.about > p {
+		font-family: var(--font-urbanist);
+		font-size: var(--regular-font-size);
+		line-height: 1.5;
+		text-align: center;
+	}
+
+	.footerInfo {
+		grid-template-columns: 1fr;
+	}
+
+  .messageImage > .homeImage{
+    display: none;
+  }
+}
+
+/* Smaller devices (portrait tablest and phones 600px up) */
+@media only screen and (min-width: 37.5rem) {
+	.sectionHeader {
+		font-size: clamp(1rem, 5.9vw, 1.8rem);
+	}
+
+	.footerInfo {
+		grid-template-columns: 1fr;
+	}
+
+  .messageImage > .chatUi {
+		position: absolute;
+		top: -70px;
+		right: 0px;
+		z-index: 1;
+    height: 360px;
+    width: 200px;
+	}
+
+	.messageImage > .profileUi {
+		position: absolute;
+		top: -100px;
+		left: -10px;
+    height: 360px;
+    width: 220px;
+	}
+}
+
+/* Medium devices (landscape tablets 768px up) */
+@media only screen and (min-width: 48rem) {
+	.sectionHeader {
+		font-size: clamp(1rem, 5.9vw, 2rem);
+	}
+
+	.footerInfo {
+		grid-template-columns: 1fr;
+	}
+
+  .messageImage > .chatUi {
+		position: absolute;
+		top: -20px;
+		right: -30px;
+		z-index: 1;
+    height: 400px;
+    width: 240px;
+	}
+
+	.messageImage > .profileUi {
+		position: absolute;
+		top: -50px;
+		left: -50px;
+    height: 400px;
+    width: 300px;
+	}
+}
+
+/* Large devices (laptops/desktops 992px up) */
+@media only screen and (min-width: 62rem) {
+	.content > .homePage {
+		grid-template-columns: repeat(2, 1fr);
+		justify-items: center;
+		align-content: center;
+		height: 100vh;
+	}
+
+	.homePage > h1 {
+		text-align: left;
+	}
+
+	.sectionHeader {
+		font-size: clamp(1rem, 5.9vw, 2.5rem);
+	}
+
+	.footerInfo {
+		grid-template-columns: 1fr;
+	}
+
+	.messageImage > .chatUi {
+		position: absolute;
+		top: -20px;
+		right: 60px;
+		z-index: 1;
+    height: 450px;
+    width: 250px;
+	}
+
+	.messageImage > .profileUi {
+		position: absolute;
+		top: -50px;
+		left: 90px;
+    height: 450px;
+    width: 300px;
+	}
 }
