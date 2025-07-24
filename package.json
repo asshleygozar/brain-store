@@ -1,20 +1,25 @@
 {
-  "name": "blabber",
-  "version": "1.0.0",
-  "description": "Blabber is a chat messaging app designed to provide message communication",
-  "main": "index.js",
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/asshleygozar/blabber.git"
+  "dependencies": {
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "next": "15.4.2"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/asshleygozar/blabber/issues"
-  },
-  "homepage": "https://github.com/asshleygozar/blabber#readme"
+  "devDependencies": {
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.4.2",
+    "@eslint/eslintrc": "^3"
+  }
 }
