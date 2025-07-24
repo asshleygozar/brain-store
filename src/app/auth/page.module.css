@@ -1,0 +1,96 @@
+.authenticationLayout {
+	height: 100vh;
+	max-width: 120rem;
+	display: grid;
+	place-content: center;
+	background-color: var(--brand-color);
+	padding: 2rem;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+}
+
+.form {
+	width: 400px;
+	background-color: var(--background);
+	border-radius: 12px;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding: 2rem;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.form > h1 {
+	font-family: var(--font-urbanist);
+	font-weight: 550;
+	text-align: center;
+}
+
+.form > label > input {
+	font-family: var(--font-inter);
+	display: block;
+	margin-top: 0.5rem;
+	padding: 0.7rem 1rem;
+	border-radius: 8px;
+	width: 100%;
+	outline: none;
+	border: 2px solid rgb(89, 86, 86);
+	background-color: var(--container-color);
+}
+
+.form > label > .logInFocus:focus {
+	outline: 2px;
+	border: 2px solid lightseagreen;
+}
+
+.form > label {
+	font-size: 0.8rem;
+	font-family: var(--font-inter);
+	font-weight: 500;
+	width: 100%;
+}
+
+.form > label > .invalid,
+.form > div > span {
+	color: rgb(157, 28, 28);
+}
+
+.form > label > .valid {
+	color: rgb(54, 243, 54);
+}
+
+.form > .submitButton {
+	font-family: var(--font-inter);
+	font-weight: 500;
+	background-color: var(--brand-color);
+	color: var(--white-font);
+	padding: 0.5rem 1rem;
+	border-radius: 8px;
+	border: 1px solid var(--brand-color);
+	transition: background-color 0.2s ease-out;
+}
+
+.form > .submitButton:hover {
+	background-color: #8a0334;
+}
+
+.form > .navigateLink {
+	text-align: center;
+	font-family: var(--font-inter);
+	font-size: 0.8rem;
+}
+
+.navigateLink > .link {
+	color: var(--brand-color);
+}
+
+.form > label > .inputInvalid:focus {
+	border: 2px solid rgb(157, 28, 28);
+}
+
+.form > label > .inputValid:focus {
+	border: 2px solid rgb(54, 243, 54);
+}
