@@ -7,7 +7,6 @@ import { useRouter } from 'next/navigation';
 
 export default function LogIn() {
 	const router = useRouter();
-
 	//For storing current input session
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
@@ -71,7 +70,7 @@ export default function LogIn() {
 			}));
 			return;
 		} else {
-			router.replace('/dashboard');
+			router.push(`/messages`);
 		}
 	}
 
