@@ -12,12 +12,7 @@ dependencies = [
     "langchain>=1.3.16",
     "pydantic>=2.13.4",
     "pydantic-settings>=2.15.0",
-    "slowapi>=0.1.10",
-    "uvicorn>=0.52.4",
 ]
-
-[tool.uv]
-package = false
 
 [project.scripts]
 brain-store = "brain_store:main"
