@@ -5,7 +5,8 @@
     "features": {
         "ghcr.io/devcontainers/features/docker-in-docker:2": {
             "enableNonRootDocker": "true"
-        }
+        },
+        "ghcr.io/devcontainers/features/git-lfs:1":{}
     },
     "customizations": {
         "vscode": {
