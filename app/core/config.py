@@ -1,5 +1,8 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import Field
+from pathlib import Path
+
+base_dir = Path(__file__).resolve().parent.parent.parent
 
 
 class Settings(BaseSettings):
@@ -12,7 +15,7 @@ class Settings(BaseSettings):
         return self.APP_STAGE == 'production'
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=f"{base_dir}/.env",
         env_file_encoding='utf-8',
         extra='ignore',
         env_ignore_empty=True
