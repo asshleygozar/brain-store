@@ -3,7 +3,7 @@ from app.core import settings
 
 
 engine = create_async_engine(
-    str(settings.DATABASE_URL),
+    str(settings.async_database_url),
     connect_args={"ssl": "require"},
     pool_size=5, 
     max_overflow=5, # Limits pool size to 5 to prevent overpooling 
