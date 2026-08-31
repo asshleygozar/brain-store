@@ -1,4 +1,3 @@
 from .session import get_db
-from .models import Base
 
-__all__ = ['get_db','Base']
+__all__ = ['get_db']

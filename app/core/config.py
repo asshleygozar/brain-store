@@ -1,5 +1,6 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import Field, PostgresDsn
+from sqlalchemy.engine import make_url
 from pathlib import Path
 
 base_dir = Path(__file__).resolve().parent.parent.parent
@@ -14,6 +15,10 @@ class Settings(BaseSettings):
     @property
     def is_production(self) -> bool:
         return self.APP_STAGE == 'production'
+
+    @property
+    def async_database_url(self) -> str:
+        return str(make_url(str(self.DATABASE_URL)).set(drivername="postgresql+asyncpg", query={}))
 
     model_config = SettingsConfigDict(
         env_file=f"{base_dir}/.env",
