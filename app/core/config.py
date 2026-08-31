@@ -1,5 +1,5 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from pydantic import Field
+from pydantic import Field, PostgresDsn
 from pathlib import Path
 
 base_dir = Path(__file__).resolve().parent.parent.parent
@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     APP_NAME: str = "Brain-Store-API"
     APP_STAGE: str = Field(default='development', min_length=3, max_length=20)
     API_ORIGIN: str = Field(default=..., min_length=6)
+    DATABASE_URL: PostgresDsn = Field(default=...)
 
     @property
     def is_production(self) -> bool:
