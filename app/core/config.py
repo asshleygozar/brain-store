@@ -11,6 +11,8 @@ class Settings(BaseSettings):
     APP_STAGE: str = Field(default='development', min_length=3, max_length=20)
     API_ORIGIN: str = Field(default=..., min_length=6)
     DATABASE_URL: PostgresDsn = Field(default=...)
+    PINECONE_API_KEY: str = Field(default=...)
+    PINECONE_INDEX_HOST: str = Field(default='brain-store-dev-index')
 
     @property
     def is_production(self) -> bool:
