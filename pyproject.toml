@@ -12,9 +12,15 @@ dependencies = [
     "asyncpg>=0.31.0",
     "fastapi[standard]>=0.141.1",
     "langchain>=1.3.16",
+    "langchain-community>=0.4.2",
+    "langchain-pinecone>=0.2.13",
+    "pinecone[asyncio]>=7.3.0",
     "psycopg2-binary>=2.9.12",
     "pydantic>=2.13.4",
     "pydantic-settings>=2.15.0",
+    "pypdf>=6.16.2",
+    "python-magic>=0.4.27",
+    "python-magic-bin>=0.4.14",
     "sqlalchemy>=2.0.52",
 ]
 
