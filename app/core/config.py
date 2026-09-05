@@ -12,7 +12,9 @@ class Settings(BaseSettings):
     API_ORIGIN: str = Field(default=..., min_length=6)
     DATABASE_URL: PostgresDsn = Field(default=...)
     PINECONE_API_KEY: str = Field(default=...)
-    PINECONE_INDEX_HOST: str = Field(default='brain-store-dev-index')
+    PINECONE_INDEX_HOST: str = Field(default=...)
+    PINECONE_INDEX_NAME: str = Field(default='brain-strore-index')
+    GEMINI_API_KEY: str = Field(default=...)
 
     @property
     def is_production(self) -> bool:
