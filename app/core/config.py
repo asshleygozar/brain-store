@@ -1,5 +1,5 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from pydantic import Field, PostgresDsn
+from pydantic import Field, PostgresDsn, SecretStr
 from sqlalchemy.engine import make_url
 from pathlib import Path
 
@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     PINECONE_API_KEY: str = Field(default=...)
     PINECONE_INDEX_HOST: str = Field(default=...)
     PINECONE_INDEX_NAME: str = Field(default='brain-strore-index')
-    GEMINI_API_KEY: str = Field(default=...)
+    GEMINI_API_KEY: SecretStr = Field(default=...)
 
     @property
     def is_production(self) -> bool:
