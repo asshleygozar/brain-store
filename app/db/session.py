@@ -3,8 +3,7 @@ from app.core import settings
 
 
 engine = create_async_engine(
-    str(settings.async_database_url),
-    connect_args={"ssl": "require"},
+    settings.async_database_url,
     pool_size=5, 
     max_overflow=5, # Limits pool size to 5 to prevent overpooling 
     pool_pre_ping=True, # My database is on free tier and suspends on inactivity (Neon specifically). This was implemented to ensure that first request will not throw connection closed error
