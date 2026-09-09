@@ -27,6 +27,10 @@ RUN uv sync --frozen
 FROM python:3.12-slim AS runner
 WORKDIR /app
 
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends libmagic1 \
+    && rm -rf /var/lib/apt/lists/*
+
 # COPY application code to my directory /app and /.venv
 COPY --from=builder /app/app /app/app
 COPY --from=builder /app/.venv /app/.venv
