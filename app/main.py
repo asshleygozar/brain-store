@@ -1,7 +1,13 @@
+import asyncio
+import sys
 import uvicorn
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
-from pinecone import Pinecone, ServerlessSpec
+from pinecone import Pinecone
+
+if sys.platform == "win32":
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+
 from app.core import settings, load_llm, load_llm_embeddings
 from app.api import v1_router
 

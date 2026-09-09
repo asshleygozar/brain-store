@@ -1,7 +1,15 @@
 import magic
-from fastapi import APIRouter, UploadFile, File, HTTPException, status
+import uuid
+from fastapi import APIRouter, UploadFile, File, HTTPException, status, Request, Depends
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+from typing import Annotated
+from pinecone.db_data.index_asyncio_interface import IndexAsyncioInterface
 from app.util import is_pdf_empty_or_image_only, extract_file_by_type
+from app.util.hash_value import HashManager
+from app.services import embedding_service
+from app.api.deps import get_pinecone_index
+from app.api.deps import get_current_key
+from app.db.models import AccessKeys
 
 ingest_router = APIRouter()
 
@@ -27,7 +35,13 @@ CHUNK_SIZE = 50
 CHUNK_OVERLAP = 30
 
 @ingest_router.post('/upload')
-async def upload_file_and_embed(file: UploadFile = File(...)):
+async def upload_file_and_embed(
+    request: Request,
+    pinecone_index: Annotated[IndexAsyncioInterface, Depends(get_pinecone_index)],
+    key: Annotated[AccessKeys, Depends(get_current_key)],
+    file: UploadFile = File(...)
+):
+    
     # Bytes and file metadata initialization
     header_bytes = await file.read(2048) # Reads first 2048 bytes
     sanitized_mime_type = magic.from_buffer(header_bytes, mime=True)
@@ -81,11 +95,37 @@ async def upload_file_and_embed(file: UploadFile = File(...)):
 
         final_chunks = splitter.split_documents(contents['content'])
 
-    
-    
-    # Embeddings
+    # Embedding by chunked texts in order to store some of the metadata
+    doc_id = str(uuid.uuid4())
+    records = []
+    chunk_texts = [chunk.page_content for chunk in final_chunks]
+    vectors = embedding_service(chunk_texts)
 
-    # Stores in vector database
+    for chunk_index, (chunk, vector) in enumerate(zip(final_chunks, vectors)):
+        text = chunk.page_content
+
+        records.append({
+            "id": doc_id,
+            "values": vector,
+            "metadata": {
+                "text": text
+            }
+        })
+
+    result = await pinecone_index.upsert(
+        vectors=records,
+        namespace=str(key.id)
+    )
+
+    print(f'Namespace: {str(key.id)}')
+    print(f'Pinecone result: {result}')
+
+    
+
+    return { "message": "File processed successfully!" }
+
+    
+
 
 
     

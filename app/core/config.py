@@ -1,5 +1,5 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from pydantic import Field, PostgresDsn, SecretStr
+from pydantic import Field, SecretStr
 from sqlalchemy.engine import make_url
 from pathlib import Path
 
@@ -10,11 +10,12 @@ class Settings(BaseSettings):
     APP_NAME: str = "Brain-Store-API"
     APP_STAGE: str = Field(default='development', min_length=3, max_length=20)
     API_ORIGIN: str = Field(default=..., min_length=6)
-    DATABASE_URL: PostgresDsn = Field(default=...)
+    DATABASE_URL: str = Field(default=...)
     PINECONE_API_KEY: str = Field(default=...)
     PINECONE_INDEX_HOST: str = Field(default=...)
     PINECONE_INDEX_NAME: str = Field(default='brain-strore-index')
     GEMINI_API_KEY: SecretStr = Field(default=...)
+    ADMIN_SECRET: SecretStr = Field(default=...)
 
     @property
     def is_production(self) -> bool:
@@ -22,7 +23,9 @@ class Settings(BaseSettings):
 
     @property
     def async_database_url(self) -> str:
-        return str(make_url(str(self.DATABASE_URL)).set(drivername="postgresql+asyncpg", query={}))
+        return make_url(str(self.DATABASE_URL)).set(
+            drivername="postgresql+psycopg", query={}
+        ).render_as_string(hide_password=False)
 
     model_config = SettingsConfigDict(
         env_file=f"{base_dir}/.env",
